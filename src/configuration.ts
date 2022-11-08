@@ -7,7 +7,11 @@ import { join } from 'path';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { WeatherErrorFilter } from './filter/weather.filter';
 import { ReportMiddleware } from './middleware/report.middleware';
+import { JwtPassportMiddleware } from './middleware/jwt.middleware';
 import * as view from '@midwayjs/view-nunjucks';
+import * as passport from '@midwayjs/passport';
+import * as jwt from '@midwayjs/jwt';
+
 @Configuration({
   imports: [
     koa,
@@ -16,7 +20,9 @@ import * as view from '@midwayjs/view-nunjucks';
       component: info,
       enabledEnvironment: ['local'],
     },
+    passport,
     view,
+    jwt,
   ],
   importConfigs: [join(__dirname, './config')],
 })
@@ -26,7 +32,7 @@ export class ContainerLifeCycle {
 
   async onReady() {
     // add middleware
-    this.app.useMiddleware([ReportMiddleware]);
+    this.app.useMiddleware([ReportMiddleware, JwtPassportMiddleware]);
     // add filter
     // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
     this.app.useFilter([WeatherErrorFilter]);

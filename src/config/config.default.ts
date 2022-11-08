@@ -9,4 +9,8 @@ export default {
   view: {
     defaultViewEngine: 'nunjucks',
   },
+  jwt: {
+    secret: 'xxxxxxxxxxxxxx', // fs.readFileSync('xxxxx.key')
+    expiresIn: '10s', // https://github.com/vercel/ms
+  },
 } as MidwayConfig;
