@@ -10,7 +10,6 @@ export class LocalPassportMiddleware extends PassportMiddleware(LocalStrategy) {
   getAuthenticateOptions(): Promise<AuthenticateOptions> | AuthenticateOptions {
     return {
       failureRedirect: '/login',
-      session: false,
       assignProperty: 'user',
     };
   }

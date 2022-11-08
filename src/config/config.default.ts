@@ -11,6 +11,6 @@ export default {
   },
   jwt: {
     secret: 'xxxxxxxxxxxxxx', // fs.readFileSync('xxxxx.key')
-    expiresIn: '10s', // https://github.com/vercel/ms
+    expiresIn: '30s', // https://github.com/vercel/ms
   },
 } as MidwayConfig;
